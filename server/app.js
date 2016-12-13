@@ -7,7 +7,9 @@ var urlEncodedParser = bodyParser.urlencoded( { extended: false } );
 var port = process.env.PORT || 8080;
 // create connection string to our database
 var connectionString = 'postgres://localhost:5432/tauerRangers';
-
+// needs a db named "tauerRangers"
+// with a table named "towers"
+// columns in towers: "id" (integer, primary key), "name" (text), "city" (text)
 app.listen( port, function( req, res ){
   console.log( 'server listening on', port );
 }); // end spin up server
@@ -25,7 +27,7 @@ app.get( '/getTowers', function( req, res ){
   pg.connect( connectionString, function( err, client, done ){
     if( err ){
       console.log( err );
-    }
+    } // end error
     else{
       console.log( 'connected to db' );
       var query = client.query( 'SELECT * from towers') ;
@@ -40,15 +42,11 @@ app.get( '/getTowers', function( req, res ){
         done();
         // send back data
         console.log( allTowers );
+        // will this work?
+        res.send( allTowers );
       });
-    }
+    } // end no error
   }); // end connect
-  // assemble object to return
-  var objectToReturn = {
-    field0: 'I came from testGet on server'
-  }; // end object to return
-  // return objectToReturn
-  res.send( objectToReturn );
 }); // end testGet
 
 // testPost

@@ -11,6 +11,7 @@ $( document ).ready( function(){
       url: '/getTowers',
       success: function( response ){
         console.log( 'back from get call:', response );
+        displayTowers( response );
       }, // end success
       error: function(){
         console.log( 'error with ajax call...');
@@ -48,5 +49,14 @@ $( document ).ready( function(){
     console.log( 'in addTowerButton on click' );
     postData();
   }); // end addTowerButton
+
+  var displayTowers = function( allTowers ){
+    // empty outputDiv
+    $( '#outputDiv' ).html( '' );
+    var outputText = '';
+    for (var i = 0; i < allTowers.length; i++) {
+      $( '#outputDiv' ).append( '<p>' + allTowers[i].name + '</p>' );
+    } // end for
+  }; // end displayTowers
 
 }); //end doc ready
