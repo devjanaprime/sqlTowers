@@ -8,4 +8,4 @@ This allows you to connect to the db ('client' in the server code)
 ![Connection String](images/connectionString.png)
 
 Use wildcards (start with $) to insert user input from req.body into columns in the table. 
-![Connection String](images/insertWithWildcards.png)
+![Insert WIth WIldcards](images/insertWithWIldcards.png)
